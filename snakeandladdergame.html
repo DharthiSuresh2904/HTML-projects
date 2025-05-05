@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Snake and Ladder Game</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: white;
+      background: url('https://thumbs.dreamstime.com/b/ladder-snake-game-funny-frame-children-64850196.jpg');
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(10, 1fr);
+      width: 512px;
+      height: 512px;
+      margin: 20px auto;
+      border: 3px solid black;
+      background-image: url('/assests/s\ and\ l.jpeg'); 
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .cell {
+      border: 1px solid black;
+      font-size: 10px;
+    
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .player1, .player2 {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .player1 {
+      background-color: red;
+      top: 2px;
+      left: 2px;
+    }
+
+    .player2 {
+      background-color: blue;
+      bottom: 2px;
+      right: 2px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #status {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Snake and Ladder</h1>
+<div id="board"></div>
+<button onclick="rollDice()">Play</button>
+<p id="status">Player 1's turn</p>
+
+<script>
+  const board = document.getElementById('board');
+  const status = document.getElementById('status');
+
+  let positions = [0, 0];
+  let turn = 0;
+  const numPlayers = 2;
+
+  for (let row = 9; row >= 0; row--) {
+    for (let col = 0; col < 10; col++) {
+      let cellNum;
+      if (row % 2 === 0) {
+        cellNum = row * 10 + col + 1;
+      } else {
+        cellNum = row * 10 + (9 - col) + 1;
+      }
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.id = 'cell-' + cellNum;
+      cell.textContent = cellNum; 
+      board.appendChild(cell);
+    }
+  }
+
+  const snakes = {
+  27: 5,
+  40: 3,
+  43: 18,
+  54: 31,
+  66: 45,
+  76: 58,
+  89: 53,
+  99: 41
+};
+
+const ladders = {
+  4: 25,
+  13: 46,
+  33: 49,
+  42: 63,
+  50: 69,
+  62: 81,
+  74: 92,
+};
+
+
+  function updateBoard() {
+    document.querySelectorAll('.player1, .player2').forEach(p => p.remove());
+    positions.forEach((pos, index) => {
+      if (pos === 0) return;
+      const player = document.createElement('div');
+      player.className = index === 0 ? 'player1' : 'player2';
+      document.getElementById('cell-' + pos).appendChild(player);
+    });
+  }
+
+  function rollDice() {
+  document.getElementById('dice-audio').play();
+
+  const roll = Math.floor(Math.random() * 6) + 1;
+  alert(`Player ${turn + 1} rolled a ${roll}`);
+
+  let newPos = positions[turn] + roll;
+  if (newPos > 100) newPos = positions[turn];
+
+  if (ladders[newPos]) {
+    alert("Ladder! Climb up!");
+    document.getElementById('ladder-audio').play();
+    newPos = ladders[newPos];
+  }
+
+  if (snakes[newPos]) {
+    alert("Snake! Slide down!");
+    document.getElementById('snake-audio').play();
+    newPos = snakes[newPos];
+  }
+
+  positions[turn] = newPos;
+  updateBoard();
+
+  if (newPos === 100) {
+    alert(` Player ${turn + 1} wins! `);
+    status.textContent = `Player ${turn + 1} wins! Resetting...`;
+    positions = [0, 0];
+    turn = 0;
+    setTimeout(() => {
+      updateBoard();
+      status.textContent = `Player 1's turn`;
+    }, 2000);
+    return;
+  }
+
+  turn = (turn + 1) % numPlayers;
+  status.textContent = `Player ${turn + 1}'s turn`;
+}
+
+</script>
+<audio id="dice-audio" src="/assests/rolling-dice-2-102706.mp3"></audio>
+<audio id="ladder-audio" src="/assests/mission-success-41211.mp3"></audio>
+<audio id="snake-audio" src="/assests/snake-hissing-6092.mp3"></audio>
+
+
+</body>
+</html>
