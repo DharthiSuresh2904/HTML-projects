@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airbnb</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: rgb(242, 90, 90);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 1em;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-bar {
+      margin: 16px auto;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px black;
+      max-width: 800px;
+    }
+
+    .search-bar div {
+      padding: 0 16px;
+      text-align: left;
+    }
+
+    .search-button {
+      background-color:rgb(219, 114, 114);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+
+    .circle-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu-container {
+      overflow-x: auto;
+      gap: 20px;
+      white-space: nowrap;
+      padding: 15px 10px;
+      border-bottom: 1px solid whitesmoke;
+    }
+
+    .menu-item {
+      display: inline-block;
+      text-align: center;
+      width: 90px;
+      color: gray;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .menu-item i {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .menu-item.active {
+      color: black;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .menu-item.active::after {
+      content: "";
+      height: 3px;
+      width: 60%;
+      background-color: black;
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 20px;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 120px;
+      overflow-x: auto;
+    }
+
+    .card {
+      width: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid white;
+    }
+
+    .tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .like {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: black;
+    }
+
+    .card-content {
+      padding: 20px 15px;
+    }
+
+    .card-content h3 {
+      margin: 5px 0;
+      font-size: 17px;
+    }
+
+    .card-content .info {
+      color: gray;
+      font-size: 14px;
+      margin: 4px 0;
+    }
+
+    .card-content .price {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rating span {
+      font-size: 14px;
+    }
+
+    .rating i {
+      color: black;
+      margin-left: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Logo" height="30" style="margin-right: 8px;"></div>
+    
+    <nav class="nav-links">
+      <a href="#">Homes</a>
+      <a href="#">Experiences</a>
+    </nav>
+
+    <div class="profile-section">
+      <span>Airbnb your home</span>
+      <span class="circle-icon"></span>
+      <span class="circle-icon"></span>
+      <span class="circle-icon"></span>
+    </div>
+  </header>
+
+  <div class="search-bar">
+    <div>
+      <strong>Where</strong>
+      <br>
+      <span>Search destinations</span>
+    </div>
+    <div>
+      <strong>Check in</strong>
+      <br>
+      <span>Add dates</span>
+    </div>
+    <div>
+      <strong>Check out</strong>
+      <br>
+      <span>Add dates</span>
+    </div>
+    <div>
+      <strong>Who</strong>
+      <br>
+      <span>Add guests</span>
+    </div>
+    <button class="search-button"></button>
+  </div>
+  <div class="menu-container">
+    <div class="menu-item active"><i class="fas fa-tractor"></i>Farms</div>
+    <div class="menu-item"><i class="fas fa-ticket-alt"></i>Icons</div>
+    <div class="menu-item"><i class="fas fa-swimming-pool"></i>Amazing pools</div>
+    <div class="menu-item"><i class="fas fa-tree"></i>Countryside</div>
+    <div class="menu-item"><i class="fas fa-ufo"></i>OMG!</div>
+    <div class="menu-item"><i class="fas fa-image"></i>Amazing views</div>
+    <div class="menu-item"><i class="fas fa-bed"></i>Rooms</div>
+    <div class="menu-item"><i class="fas fa-umbrella-beach"></i>Beachfront</div>
+    <div class="menu-item"><i class="fas fa-hat-chef"></i>Luxe</div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2019/07/20/20/11/nature-4351455_1280.jpg" alt="House 1">
+      <div class="like"></div>
+      <div class="card-content">
+        <h3>Katali, India</h3>
+        <div class="info">537 kilometres away</div>
+        <div class="info">4–9 May</div>
+        <div class="price">28,529 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2024/12/28/13/28/tram-9296118_1280.jpg" alt="House 2">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Mandrem, India</h3>
+          <span>4.91</span>
+        </div>
+        <div class="info">540 kilometres away</div>
+        <div class="info">25–30 May</div>
+        <div class="price">89,349 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2017/04/03/11/06/greece-2197996_1280.jpg" alt="House 3">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Mandrem, India</h3>
+          <span>4.94</span>
+        </div>
+        <div class="info">540 kilometres away</div>
+        <div class="info">16–21 May</div>
+        <div class="price">27,736 for 5 nights</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2016/03/22/22/45/ferris-wheel-1273841_1280.jpg" alt="House 1">
+      <div class="like"></div>
+      <div class="card-content">
+        <h3>Chevella, India</h3>
+        <span>4.88</span>
+        <div class="info">38 kilometres away</div>
+        <div class="info">11–16 May</div>
+        <div class="price">62,194 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2018/10/10/06/59/grand-canyon-3736557_1280.jpg" alt="House 2">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Nandi Hills, India</h3>
+        </div>
+        <div class="info">451 kilometres away</div>
+        <div class="info">22-27 May</div>
+        <div class="price">55,195 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2024/04/22/16/38/buildings-8713025_1280.jpg" alt="House 3">
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Nandi, India</h3>
+          <span>4.84</span>
+        </div>
+        <div class="info">452 kilometres away</div>
+        <div class="info">25–30 May</div>
+        <div class="price">40,506 for 5 nights</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2017/11/21/12/31/abandoned-2968091_1280.jpg" alt="House 1">
+      <div class="like"></div>
+      <div class="card-content">
+        <h3>Hyderabad, India</h3>
+        <span>4.79</span>
+        <div class="info">26 kilometres away</div>
+        <div class="info">11–16 May</div>
+        <div class="price">58,194 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2015/09/30/22/13/poland-966151_1280.jpg" alt="House 2">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Kanakamamidi, India</h3>
+          <span>4.91</span>
+        </div>
+        <div class="info">24 kilometres away</div>
+        <div class="info">12–17 May</div>
+        <div class="price">97,000 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/1391453549/photo/pologne-varsovie.jpg?s=2048x2048&w=is&k=20&c=kcN3-LHxSxOy8k5t2ahBvN-xgO3cfRL750mYkmHuHwA=" alt="House 3">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Koheda, India</h3>
+          <div class="tag">Guest favourite</div>
+          <span>New</span>
+        </div>
+        <div class="info">22 kilometres away</div>
+        <div class="info">12–17 May</div>
+        <div class="price">1,41,365 for 5 nights</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2019/09/30/19/20/caravansary-4516601_1280.jpg" alt="House 1">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <h3>Katali, India</h3>
+        <div class="info">537 kilometres away</div>
+        <div class="info">4–9 May</div>
+        <div class="price">28,529 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2018/08/14/12/44/place-3605454_1280.jpg" alt="House 2">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Mandrem, India</h3>
+          <span>4.91</span>
+        </div>
+        <div class="info">540 kilometres away</div>
+        <div class="info">25–30 May</div>
+        <div class="price">27,736 for 5 nights</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2022/05/04/09/13/bordeaux-7173548_1280.jpg" alt="House 3">
+      <div class="tag">Guest favourite</div>
+      <div class="like"></div>
+      <div class="card-content">
+        <div class="rating">
+          <h3>Mandrem, India</h3>
+          <span>4.94</span>
+        </div>
+        <div class="info">540 kilometres away</div>
+        <div class="info">16–21 May</div>
+        <div class="price">27,736 for 5 nights</div>
+      </div>
+    </div>
+  </div>
+<div class="card-container">
+  <div class="card">
+    <img src="https://cdn.pixabay.com/photo/2018/10/18/11/41/vienna-3756166_1280.jpg" alt="House 1">
+    <div class="like"></div>
+    <div class="card-content">
+      <h3>Hyderabad, India</h3>
+      <span>4.79</span>
+      <div class="info">26 kilometres away</div>
+      <div class="info">11–16 May</div>
+      <div class="price">58,194 for 5 nights</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://cdn.pixabay.com/photo/2019/12/14/19/37/autumn-4695599_1280.jpg" alt="House 2">
+    <div class="tag">Guest favourite</div>
+    <div class="like"></div>
+    <div class="card-content">
+      <div class="rating">
+        <h3>Kanakamamidi, India</h3>
+        <span>4.91</span>
+      </div>
+      <div class="info">24 kilometres away</div>
+      <div class="info">12–17 May</div>
+      <div class="price">97,000 for 5 nights</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://cdn.pixabay.com/photo/2022/08/23/01/10/cape-7404790_1280.jpg" alt="House 3">
+    <div class="tag">Guest favourite</div>
+    <div class="like"></div>
+    <div class="card-content">
+      <div class="rating">
+        <h3>Koheda, India</h3>
+        <div class="tag">Guest favourite</div>
+        <span>New</span>
+      </div>
+      <div class="info">22 kilometres away</div>
+      <div class="info">12–17 May</div>
+      <div class="price">1,41,365 for 5 nights</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
