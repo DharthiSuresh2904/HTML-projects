@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clock</title>
+  <style>
+    body {
+      background: linear-gradient(to right, rgb(176, 236, 234), rgb(87, 115, 207));
+      color: rgb(0, 247, 255);
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .clock-container {
+      text-align: center;
+      background: black;
+      padding: 30px 60px;
+      border: 5px solid rgb(0, 26, 255);
+     
+      box-shadow: 0 0 20px springgreen;
+    }
+
+    .time {
+      font-size: 4rem;
+    }
+
+    .date {
+      font-size: 1.5rem;
+      margin-top: 15px;
+      color: springgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-container">
+    <div class="time" id="clock">12:00:00 AM</div>
+    <div class="date" id="date">January 1, 2025</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+
+      hours = hours % 12;
+      hours = hours ? hours : 12; 
+      const displayHours = ('0' + hours).slice(-2);
+
+      document.getElementById('clock').textContent = `${displayHours}:${minutes}:${seconds} ${ampm}`;
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString('en-US', options);
+      document.getElementById('date').textContent = formattedDate;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); 
+  </script>
+</body>
+</html>
