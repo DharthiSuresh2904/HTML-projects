@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Color Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: white;
+      background-image: url('https://cdn.pixabay.com/photo/2019/02/08/17/57/cubes-3983666_1280.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;      
+      background-position: center;
+    }
+
+    #colorBox {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: red;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    #colorName {
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: springgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: springgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Random Color Generator</h1>
+  <div id="colorBox"></div>
+  <div id="colorName">red</div>
+  <button onclick="generateColor()">Generate Color</button>
+
+  <script>
+    const namedColors = [
+      "red", "blue", "green", "yellow", "purple", "orange", "pink",
+      "brown", "gray", "black", "white", "cyan", "magenta", "lime",
+      "maroon", "navy", "olive", "teal", "aqua", "gold", "silver", "indigo"
+    ];
+
+    function generateColor() {
+
+      const randomIndex = Math.floor(Math.random() * namedColors.length);
+      const randomColor = namedColors[randomIndex];
+
+      document.getElementById('colorBox').style.backgroundColor = randomColor;
+      document.getElementById('colorName').textContent = randomColor;
+    }
+  </script>
+</body>
+</html>
