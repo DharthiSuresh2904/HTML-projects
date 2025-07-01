@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://cdn.pixabay.com/photo/2015/10/13/20/56/test-986769_1280.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;      
+      background-position: center;
+    }
+
+    .quiz-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px black;
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color:blue;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .next-btn {
+      margin-top: 15px;
+      background-color: springgreen;
+    }
+
+    .next-btn:hover {
+      background-color:springgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container" id="quizContainer">
+    <h2>Welcome to the Quiz!</h2>
+    <button class="btn" onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What does HTML stand for?",
+        answers: [
+          "Hyperlinks and Text Markup Language",
+          "Home Tool Markup Language",
+          "Hyper Text Markup Language",
+          "Hyper Tool Main Language"
+        ],
+        correct: "Hyper Text Markup Language"
+      },
+      {
+        question: "Which tag is used to create a hyperlink in HTML?",
+        answers: ["<link>", "<href>", "<a>", "<hyperlink>"],
+        correct: "<a>"
+      },
+      {
+        question: "Which HTML tag is used to display an image?",
+        answers: ["<img>", "<pic>", "<image>", "<src>"],
+        correct: "<img>"
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function startQuiz() {
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = quizData[currentQuestion];
+      const container = document.getElementById("quizContainer");
+      container.innerHTML = `
+        <h2>${q.question}</h2>
+        <div id="answers"></div>
+        <div class="feedback" id="feedback"></div>
+        <button class="btn next-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+      `;
+
+      const answersDiv = document.getElementById("answers");
+
+      q.answers.forEach(answer => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.className = "btn";
+        btn.onclick = () => checkAnswer(answer);
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[currentQuestion].correct;
+      const feedback = document.getElementById("feedback");
+
+      if (selected === correct) {
+        feedback.textContent = "Correct!";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = `Wrong! The correct answer is ${correct}.`;
+        feedback.style.color = "red";
+      }
+
+      const answerButtons = document.querySelectorAll("#answers .btn");
+      answerButtons.forEach(btn => btn.disabled = true);
+
+
+
+      document.getElementById("nextBtn").style.display = "block";
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        showQuestion();
+      } else {
+        document.getElementById("quizContainer").innerHTML = "<h2>Quiz Completed!</h2><p>Thanks for playing.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
