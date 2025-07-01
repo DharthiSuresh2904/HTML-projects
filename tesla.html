@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tesla</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 1px 4px black;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: skyblue;
+    }
+
+    .icons {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .icons span {
+      display: inline-block;
+      transition: color 0.3s;
+    }
+
+    .icons span:hover {
+      color: skyblue;
+    }
+    .hero {
+      background-image: url('https://cdn.pixabay.com/photo/2022/06/07/16/22/drift-7248723_1280.jpg'); 
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 50px;
+      padding: 0 20px;
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .scroll-container img {
+      height: 300px;
+      border-radius: 10px;
+    }
+    .card-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: rgb(245, 239, 239);
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 600px;
+      max-width: 100%;
+      box-shadow: 0 2px 8px black;
+    }
+
+    .card-content {
+      max-width: 60%;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+    }
+
+    .card p {
+      color: gray;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .card button {
+      padding: 0.7rem 1.5rem;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 1px 4px black;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+    }
+    .hero1 {
+      background-image: url('https://cdn.pixabay.com/photo/2023/11/16/06/59/speedy-car-8391554_1280.jpg'); 
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+    }
+    p {
+      font-size: 1.5rem;
+      margin: 10px 0 30px;
+    }
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn-order {
+      background-color: blue;
+      color: white;
+    }
+    .btn-learn {
+      background-color: white;
+      color: black;
+    }
+    .hero2 {
+      background-image: url('https://cdn.pixabay.com/photo/2016/03/26/22/34/car-1281640_1280.jpg'); 
+      background-size: cover;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero3{
+      background-image: url('https://cdn.pixabay.com/photo/2022/01/13/14/45/house-6935453_1280.jpg'); 
+      background-size: cover;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero4{
+      background-image: url('https://cdn.pixabay.com/photo/2017/11/11/17/05/solar-system-2939551_1280.jpg'); 
+      background-size: cover;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1; 
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: white;
+      font-family: Arial, sans-serif;
+      color: black;
+        }
+        @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">TESLA</div>
+    
+    <nav class="nav-links">
+      <a href="#">Vehicles</a>
+      <a href="#">Energy</a>
+      <a href="#">Charging</a>
+      <a href="#">Discover</a>
+      <a href="#">Shop</a>
+    </nav>
+    
+    <div class="icons">
+      <span title="Help"></span>      
+      <span title="Language"></span>  
+      <span title="Account"></span>   
+    </div>
+</header>
+<div class="hero">
+  <h1>Model Y</h1>
+  <p>Starting at $41,490</p>
+  <div class="button-container">
+    <button class="btn btn-order">Order Now</button>
+    <button class="btn btn-learn">Learn More</button>
+  </div>
+</div>
+<div class="hero2">
+  <h2><u>Overall NHTSA Safety Rating</u></h2>
+</div>
+    <div class="scroll-container">
+        <img src="https://cdn.pixabay.com/photo/2020/05/19/10/05/opel-5190050_1280.jpg" height="500px" width="600px">
+        <img src="https://cdn.pixabay.com/photo/2016/05/18/10/52/buick-1400243_1280.jpg" height="500px" width="600px">
+        <img src="https://cdn.pixabay.com/photo/2021/08/31/19/04/lamborghini-6589872_1280.jpg" height="500px" width="600px">
+        <img src="https://cdn.pixabay.com/photo/2017/04/24/00/16/car-2255161_1280.jpg" height="500px" width="600px">
+      </div>
+      <br>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-content">
+            <h2>Compare Models</h2>
+            <p>Find the Tesla vehicle that's right for you.</p>
+            <button>Compare Models</button>
+          </div>
+          <img src="https://cdn.pixabay.com/photo/2020/09/14/07/40/vehicle-5570248_1280.jpg" alt="Tesla Cars"> 
+        </div>
+        <div class="card">
+            <div class="card-content">
+              <h2>Earth Day</h2>
+              <p>We are building a sustainable future.</p>
+              <button>Learn More</button>
+            </div>
+            <img src="https://cdn.pixabay.com/photo/2016/05/01/21/20/earth-1365995_1280.jpg" alt="Earth Day">
+          </div>
+        </div>
+        <br>
+        <div class="hero1">
+          <h1>Model S</h1>
+          <p>After $7,500 Federal Tax Credit</p>
+          <div class="button-container">
+            <button class="btn btn-order">Order Now</button>
+            <button class="btn btn-learn">Learn More</button>
+          </div>
+        </div>
+      
+        <div class="hero3">
+          <h1>Solar Panels</h1>
+          <p><u>Schedule a Virtual Consultation</u></p>
+        </div>
+        <div class="hero4">
+          <h1>Solar Roof</h1>
+          <p>Produce Clean Energy From Your Roof</p>
+        </div>
+        <footer>
+          Tesla © 2025
+          <br>
+          privacy & Legal | Contact | Get Updates
+        </footer>
+        
+</body>
+</html>
